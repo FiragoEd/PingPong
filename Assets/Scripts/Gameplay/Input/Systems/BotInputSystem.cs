@@ -9,7 +9,7 @@ namespace Gameplay.Input.Systems
 {
     public sealed class BotInputSystem :
         IInputSystem,
-        IUpdateGameListener,
+        ILateUpdateGameListener,
         IStartHandler,
         IFinishHandler,
         IFinishRoundHandler,
@@ -50,7 +50,7 @@ namespace Gameplay.Input.Systems
             _gameplayListener.RemoveListener(this);
         }
 
-        public void OnUpdate()
+        public void OnLateUpdate()
         {
             if (!_isHandle) return;
 

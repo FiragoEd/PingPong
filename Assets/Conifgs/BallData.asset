@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: BallData
   m_EditorClassIdentifier: 
   _startSpeed: 3.5
-  _deltaSpeed: 1
+  _deltaSpeed: 0.5
   _maxSpeedMagnitude: 25

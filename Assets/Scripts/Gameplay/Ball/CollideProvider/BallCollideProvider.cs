@@ -33,9 +33,7 @@ namespace Gameplay.Ball.CollideProvider
 
             if (col.gameObject.TryGetComponent<BoosterBase>(out var booster))
             {
-                //booster.GetBooster(_lastPlayerCollide);
                 OnBoosterCollide?.Invoke(booster, _lastPlayerCollide);
-                //Destroy(booster.gameObject);
             }
         }
     }

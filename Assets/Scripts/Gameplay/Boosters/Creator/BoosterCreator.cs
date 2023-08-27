@@ -10,8 +10,14 @@ using Object = UnityEngine.Object;
 
 namespace Gameplay.Boosters.Creator
 {
-    public class BoosterCreator : IBoosterCreator, IStartHandler, IFinishHandler, IRestartRoundHandler,
-        IInitializeListener, IDisposeListener
+    public class BoosterCreator : 
+        IBoosterCreator, 
+        IStartHandler, 
+        IFinishHandler, 
+        IRestartRoundHandler, 
+        IFinishRoundHandler ,
+        IInitializeListener, 
+        IDisposeListener    
     {
         private const int MilliSecondMultiplier = 1000;
 
@@ -21,6 +27,8 @@ namespace Gameplay.Boosters.Creator
 
         private List<BoosterBase> _boosters = new();
         private CancellationTokenSource _cancellationToken = new();
+
+        private bool _isSpawning = false;
 
         public BoosterCreator(
             GameSettingConfig gameSettingConfig,
@@ -44,19 +52,28 @@ namespace Gameplay.Boosters.Creator
 
         public void StartGame()
         {
+            _isSpawning = true;  
             StartSpawningBoosters();
+        }
+
+        public void FinishRound()
+        {
+            _isSpawning = false;
+            _cancellationToken?.Cancel();      
+            DestroyAllBoosters();
         }
 
         public void RestartRound()
         {
-            _cancellationToken?.Cancel();
-            DestroyAllBoosters();
+            _isSpawning = true;
             StartSpawningBoosters();
         }
 
         public void FinishGame()
         {
-            DestroyAllBoosters();
+            _isSpawning = false;
+            _cancellationToken?.Cancel();
+            DestroyAllBoosters();       
         }
 
         public void InstantiateBooster()
@@ -65,12 +82,19 @@ namespace Gameplay.Boosters.Creator
             _boosters.Add(booster);
         }
 
+        public void RemoveBooster(BoosterBase booster)
+        {
+            _boosters.Remove(booster);
+            Object.Destroy(booster.gameObject); 
+        }
+
         private void DestroyAllBoosters()
         {
             foreach (var booster in _boosters)
             {
                 Object.Destroy(booster.gameObject);
             }
+            _boosters.Clear();
         }
 
         private async void StartSpawningBoosters()
@@ -78,11 +102,18 @@ namespace Gameplay.Boosters.Creator
             _cancellationToken = new CancellationTokenSource();
             do
             {
-                await UniTask.Delay(_gameSettingConfig.BoosterSpawning * MilliSecondMultiplier,
-                    cancellationToken: _cancellationToken.Token);
-                if (_cancellationToken.IsCancellationRequested) return;
-                InstantiateBooster();
-            } while (!_cancellationToken.IsCancellationRequested);
+                try
+                {
+                    await UniTask.Delay(_gameSettingConfig.BoosterSpawning * MilliSecondMultiplier,
+                        cancellationToken: _cancellationToken.Token);
+                    InstantiateBooster();
+                }
+                catch
+                {
+                    // ignored
+                }
+                
+            } while (_isSpawning);
         }
     }
 }

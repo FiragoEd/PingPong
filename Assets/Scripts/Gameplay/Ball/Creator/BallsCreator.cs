@@ -34,7 +34,7 @@ namespace Gameplay.Ball.Creator
             _gameplayListener = gameplayListener;
             _ballFactory = ballFactory;
         }
-        
+
         public void Initialize()
         {
             _gameplayListener.AddListener(this);
@@ -53,14 +53,13 @@ namespace Gameplay.Ball.Creator
         public void RestartRound()
         {
             InstantiateBall();
-
         }
-        
+
         public void FinishRound()
         {
             DestroyAllBalls();
         }
-        
+
         public void FinishGame()
         {
             DestroyAllBalls();
@@ -86,9 +85,8 @@ namespace Gameplay.Ball.Creator
             {
                 OnBallRemoved?.Invoke(ball);
                 Object.Destroy(ball.gameObject);
-               
             }
+            _balls.Clear();
         }
-        
     }
 }

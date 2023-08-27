@@ -16,6 +16,11 @@ namespace Infrastructure.Context
     {
         void OnUpdate();
     }
+    
+    public interface ILateUpdateGameListener
+    {
+        void OnLateUpdate();
+    }
 
     public interface IGameListenerProvider
     {

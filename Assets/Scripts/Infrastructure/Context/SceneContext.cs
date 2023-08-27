@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Infrastructure.Installer;
 using UnityEngine;
@@ -9,9 +10,10 @@ namespace Infrastructure.Context
         [SerializeField] private bool _autoRun = true;
         [SerializeField] private List<MonoInstaller> _monoInstallers;
 
-        private readonly List<IInitializeListener> initializeListeners = new();
-        private readonly List<IUpdateGameListener> updateListeners = new();
-        private readonly List<IDisposeListener> disposeListeners = new();
+        private readonly List<IInitializeListener> _initializeListeners = new();
+        private readonly List<IUpdateGameListener> _updateListeners = new();
+        private readonly List<ILateUpdateGameListener> _lateUpdateListeners = new();
+        private readonly List<IDisposeListener> _disposeListeners = new();
 
         private void Awake()
         {
@@ -21,10 +23,19 @@ namespace Infrastructure.Context
 
         private void Update()
         {
-            for (int i = 0, count = updateListeners.Count; i < count; i++)
+            for (int i = 0, count = _updateListeners.Count; i < count; i++)
             {
-                var listener = updateListeners[i];
+                var listener = _updateListeners[i];
                 listener.OnUpdate();
+            }
+        }
+
+        private void LateUpdate()
+        {
+            for (int i = 0, count = _lateUpdateListeners.Count; i < count; i++)
+            {
+                var listener = _lateUpdateListeners[i];
+                listener.OnLateUpdate();
             }
         }
 
@@ -56,15 +67,19 @@ namespace Infrastructure.Context
         {
             if (listener is IInitializeListener initializeListener)
             {
-                this.initializeListeners.Add(initializeListener);
+                this._initializeListeners.Add(initializeListener);
             }
             if (listener is IUpdateGameListener updateListener)
             {
-                this.updateListeners.Add(updateListener);
+                this._updateListeners.Add(updateListener);
             }
             if (listener is IDisposeListener disposeListener)
             {
-                this.disposeListeners.Add(disposeListener);
+                this._disposeListeners.Add(disposeListener);
+            }
+            if (listener is ILateUpdateGameListener lateUpdateGameListener)
+            {
+                this._lateUpdateListeners.Add(lateUpdateGameListener);
             }
         }
 
@@ -78,18 +93,18 @@ namespace Infrastructure.Context
 
         private void InvokeInitListeners()
         {
-            for (int i = 0, count = initializeListeners.Count; i < count; i++)
+            for (int i = 0, count = _initializeListeners.Count; i < count; i++)
             {
-                var listener = initializeListeners[i];
+                var listener = _initializeListeners[i];
                 listener.Initialize();
             }
         }
 
         private void InvokeDisposeListeners()
         {
-            for (int i = 0, count = disposeListeners.Count; i < count; i++)
+            for (int i = 0, count = _disposeListeners.Count; i < count; i++)
             {
-                var listener = disposeListeners[i];
+                var listener = _disposeListeners[i];
                 listener.Dispose();
             }
         }

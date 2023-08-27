@@ -1,6 +1,7 @@
 using System;
 using Gameplay.Ball.BallAccumulator;
 using Gameplay.Boosters;
+using Gameplay.Boosters.Creator;
 using Gameplay.Player;
 using Infrastructure.Context;
 using Object = UnityEngine.Object;
@@ -10,12 +11,15 @@ namespace Gameplay.CollideHandler
     public class CollideHandler : ICollideHandler, IInitializeListener, IDisposeListener
     {
         private readonly IBallProvider _ballProvider;
-        
+        private readonly IBoosterCreator _boosterCreator;
+
         public event Action<PlayerType> OnDeadZoneCollide;
         
         public CollideHandler(
+            IBoosterCreator boosterCreator,
             IBallProvider ballProvider)
         {
+            _boosterCreator = boosterCreator;
             _ballProvider = ballProvider;
         }
 
@@ -46,7 +50,7 @@ namespace Gameplay.CollideHandler
         private void OnBoosterColliderHandler(BoosterBase booster, Player.Player player)
         {
             booster.GetBooster(player);
-            Object.Destroy(booster.gameObject);
+            _boosterCreator.RemoveBooster(booster);
         }
         
         private void OnDeadZoneCollideHandler(PlayerType playerZone)

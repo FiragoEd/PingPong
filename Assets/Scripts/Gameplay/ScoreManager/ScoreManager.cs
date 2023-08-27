@@ -12,7 +12,7 @@ namespace Gameplay.ScoreManager
 
         private int _fistPlayerScore = 0;
         private int _secondPlayerScore = 0;
-        
+
         public ScoreManager(
             GameSettingConfig gameSettingConfig,
             TMP_Text fistPlayerText,
@@ -32,25 +32,22 @@ namespace Gameplay.ScoreManager
             _fistPlayerText.text = _fistPlayerScore.ToString();
             _secondPlayerText.text = _fistPlayerScore.ToString();
         }
-        
+
         public bool TryIncrementScoreToWin(PlayerType playerType)
         {
-            if (playerType == PlayerType.First)
+            if (playerType == PlayerType.Second)
             {
                 _fistPlayerScore++;
                 _fistPlayerText.text = _fistPlayerScore.ToString();
-                if (_fistPlayerScore == _gameSettingConfig.ScoreToWin)
-                    return true;
             }
             else
             {
                 _secondPlayerScore++;
-                _secondPlayerText.text = _fistPlayerScore.ToString();
-                if(_secondPlayerScore == _gameSettingConfig.ScoreToWin)
-                    return true;
+                _secondPlayerText.text = _secondPlayerScore.ToString();
             }
 
-            return false;
+            return _secondPlayerScore == _gameSettingConfig.ScoreToWin ||
+                   _fistPlayerScore == _gameSettingConfig.ScoreToWin;
         }
     }
 }

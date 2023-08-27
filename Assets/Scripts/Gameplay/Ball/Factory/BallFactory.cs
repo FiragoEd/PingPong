@@ -26,5 +26,13 @@ namespace Gameplay.Ball.Factory
             ball.BallMoveController.AddStartForce();
             return ball;
         }
+        
+        public Ball CloneBall(Ball cloneBall)
+        {
+            var ball = Object.Instantiate(cloneBall, _ballSpawnPoint.position, Quaternion.identity);
+            ball.BallMoveController.Construct(_ballConfig);
+            ball.BallMoveController.OppositeMove(cloneBall.BallMoveController.Velocity);
+            return ball;
+        }
     }
 }

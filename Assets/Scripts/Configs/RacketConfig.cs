@@ -6,7 +6,9 @@ namespace Configs
     public class RacketConfig : ScriptableObject
     {
         [SerializeField] private float _playerSpeed;
+        [SerializeField] private float _sizeCoef;
 
         public float PlayerSpeed => _playerSpeed;
+        public float SizeCoef => _sizeCoef;
     }
 }

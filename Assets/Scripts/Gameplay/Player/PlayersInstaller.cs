@@ -28,6 +28,7 @@ namespace Gameplay.Player
             contextListeners.Add(inputSystem);
 
             _player1.PlayerMoveController.Construct(inputSystem, _racketConfig);
+            _player1.Construct(_racketConfig);
         }
 
         private void InstallPlayer2()
@@ -38,6 +39,7 @@ namespace Gameplay.Player
             contextListeners.Add(inputSystem);
 
             _player2.PlayerMoveController.Construct(inputSystem, _racketConfig);
+            _player2.Construct(_racketConfig);
         }
     }
 }

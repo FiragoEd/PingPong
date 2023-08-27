@@ -1,13 +1,12 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using Cysharp.Threading.Tasks;
 using Gameplay.Ball.BallAccumulator;
 using GameSystem;
 
 namespace Gameplay.Ball.Creator
 {
-    public class BallsCreator : IBallsCreator, IBallProvider, IInitializeListener
+    public sealed class BallsCreator : IBallsCreator, IBallProvider, IInitializeListener
     {
         private readonly IBallFactory _ballFactory;
 
@@ -34,5 +33,11 @@ namespace Gameplay.Ball.Creator
             OnBallCreated?.Invoke(ball);
         }
 
+        public void CloneBall(Ball cloneBall)
+        {
+            var ball = _ballFactory.CloneBall(cloneBall);
+            _balls.Add(ball);
+            OnBallCreated?.Invoke(ball);
+        }
     }
 }

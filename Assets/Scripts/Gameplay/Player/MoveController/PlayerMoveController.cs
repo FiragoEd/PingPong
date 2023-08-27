@@ -11,6 +11,8 @@ namespace Gameplay.Player.MoveController
         private RacketConfig _racketConfig;
         private Rigidbody2D _rigidbody2D;
 
+        private bool _isReverse = false;
+
         public void Construct(
             IInputSystem inputSystem,
             RacketConfig racketConfig)
@@ -19,7 +21,12 @@ namespace Gameplay.Player.MoveController
             _inputSystem = inputSystem;
             _racketConfig = racketConfig;
         }
-
+        
+        public void ReversControl()
+        {
+            _isReverse = !_isReverse;
+        }
+        
         private void Start()
         {
             _inputSystem.OnMove += OnMoveHandler;
@@ -30,9 +37,11 @@ namespace Gameplay.Player.MoveController
         {
             _inputSystem.OnMove -= OnMoveHandler;
         }
-
+        
         private void OnMoveHandler(Vector2 direction)
         {
+            if (_isReverse)
+                direction = -direction;
             _rigidbody2D.MovePosition((Vector2)gameObject.transform.position + direction * _racketConfig.PlayerSpeed);
         }
     }

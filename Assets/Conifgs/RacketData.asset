@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: RacketData
   m_EditorClassIdentifier: 
   _playerSpeed: 0.3
+  _sizeCoef: 2

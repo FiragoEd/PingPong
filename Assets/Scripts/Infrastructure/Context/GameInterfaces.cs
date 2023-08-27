@@ -3,34 +3,18 @@ using UnityEngine;
 
 namespace GameSystem
 {
-    public interface IStartGameListener
+    public interface IInitializeListener
     {
-        void OnStartGame();
-    }
-
-    public interface IPauseGameListener
-    {
-        void OnPauseGame();
-    }
-
-    public interface IResumeGameListener
-    {
-        void OnResumeGame();
-    }
-
-    public interface IUpdateGameListener
-    {
-        void OnUpdate(float deltaTime);
+        void Initialize();
     }
     
-    public interface IFinishGameListener
+    public interface IDisposeListener
     {
-        void OnFinishGame();
+        void Dispose();
     }
-
-    public interface IGameServiceProvider
+    public interface IUpdateGameListener
     {
-        IEnumerable<object> GetServices();
+        void OnUpdate();
     }
 
     public interface IGameListenerProvider

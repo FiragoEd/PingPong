@@ -1,12 +1,13 @@
 using Infrastructure.ConfigInitializer;
+using Infrastructure.GameFSM.States;
 using Infrastructure.InfrastructureFSM;
-using Infrastructure.InfrastructureFSM.States;
 using Infrastructure.ServiceLocator;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Infrastructure.Bootstrap
 {
-    public class BootLoader : MonoBehaviour
+    public sealed class BootLoader : MonoBehaviour
     {
         [SerializeField] private ConfigProvider _configProvider;
 
@@ -14,6 +15,7 @@ namespace Infrastructure.Bootstrap
         {
             InitGameStateMachine();
             InitConfigProvider();
+            SceneManager.LoadScene("Scenes/Game");
         }
 
 

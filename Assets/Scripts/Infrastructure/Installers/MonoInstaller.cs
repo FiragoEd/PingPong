@@ -1,10 +1,17 @@
-using Infrastructure.ServiceLocator;
+using System.Collections.Generic;
+using GameSystem;
 using UnityEngine;
 
 namespace Infrastructure.Installer
 {
-    public abstract class MonoInstaller : MonoBehaviour
+    public abstract class MonoInstaller : MonoBehaviour, IGameListenerProvider
     {
-        public abstract void InstallBindings();
+        protected List<object> contextListeners = new List<object>();
+        public abstract void Install();
+
+        public IEnumerable<object> GetListeners()
+        {
+            return contextListeners;
+        }
     }
 }

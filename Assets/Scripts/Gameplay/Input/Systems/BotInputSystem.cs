@@ -8,9 +8,7 @@ namespace Gameplay.Input.Systems
 {
     public sealed class BotInputSystem :
         IInputSystem,
-        IUpdateGameListener,
-        IInitializeListener,
-        IDisposeListener
+        IUpdateGameListener
     {
         private readonly IBallProvider _ballProvider;
         private readonly Player.Player _player;
@@ -18,45 +16,47 @@ namespace Gameplay.Input.Systems
 
         public event Action<Vector2> OnMove;
 
-        private Ball.Ball _currentBall = null;
+        private Ball.Ball _followingBall = null;
 
         public BotInputSystem(
             IBallProvider ballProvider,
-            Player.Player player)
+            Player.Player player,
+            BotConfig botConfig)
         {
             _ballProvider = ballProvider;
+            _botConfig = botConfig;
             _player = player;
-        }
-
-        public void Initialize()
-        {
-            _ballProvider.OnBallsChange += OnBallChangeHandler;
         }
 
         public void OnUpdate()
         {
-            if (_currentBall == null) return;
-            
-            HandleBallMovment();
+            GetFollowingBall();
+            if (_followingBall == null) return;
+            HandleBallMove();
         }
 
-        public void Dispose()
+        private void HandleBallMove()
         {
-            _ballProvider.OnBallsChange -= OnBallChangeHandler;
-        }
-
-        private void HandleBallMovment()
-        {
-            Debug.Log("Handle");
-            var ballPos = _currentBall.transform.position;
+            var ballPos = _followingBall.transform.position;
             var diff = ballPos.y - _player.transform.position.y;
-            if (Math.Abs(diff) > 0.5)
+            if (Math.Abs(diff) > _botConfig.BotActiveOffset)
                 OnMove?.Invoke(diff > 0 ? Vector2.up : Vector2.down);
         }
 
-        private void OnBallChangeHandler()
+        private void GetFollowingBall()
         {
-            _currentBall = _ballProvider.GetFirstBall();
+            var minDistance = float.MaxValue;
+            for (var i = 0; i < _ballProvider.Balls.Count; i++)
+            {
+                var distance = Vector2.Distance(
+                    _ballProvider.Balls[i].transform.position, 
+                        _player.transform.position);
+                if (distance < minDistance)
+                {
+                    minDistance = distance;
+                    _followingBall = _ballProvider.Balls[i];
+                }
+            }
         }
     }
 }

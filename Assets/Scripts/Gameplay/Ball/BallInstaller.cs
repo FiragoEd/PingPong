@@ -1,6 +1,8 @@
 using System.Collections.Generic;
+using Configs;
 using Gameplay.Ball.BallAccumulator;
-using Gameplay.Ball.BallCreator;
+using Gameplay.Ball.Creator;
+using Gameplay.Ball.Factory;
 using GameSystem;
 using Infrastructure.Installer;
 using Infrastructure.ServiceLocator;
@@ -28,13 +30,14 @@ namespace Gameplay.Ball
             IBallProvider ballProvider = creator;
             Locator.Register(ballsCreator);
             Locator.Register(ballProvider);
-            
+
             contextListeners.Add(creator);
         }
 
         private void BindBallFactory()
         {
-            _ballFactory = new BallFactory.BallFactory(_spawnPoint, _ballPrefab);
+            Locator.TryResolve<BallConfig>(out var ballConfig);
+            _ballFactory = new BallFactory(_spawnPoint, ballConfig, _ballPrefab);
         }
     }
 }

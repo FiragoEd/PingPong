@@ -1,9 +1,8 @@
 using System.Collections.Generic;
+using Configs;
 using Gameplay.Ball.BallAccumulator;
 using Gameplay.Input;
 using Gameplay.Input.Systems;
-using GameSystem;
-using Infrastructure.ConfigInitializer;
 using Infrastructure.Installer;
 using Infrastructure.ServiceLocator;
 using UnityEngine;
@@ -15,10 +14,10 @@ namespace Gameplay.Player
         [SerializeField] private Player _player1;
         [SerializeField] private Player _player2;
 
-        
-
+        private RacketConfig _racketConfig;
         public override void Install()
         {
+            Locator.TryResolve<RacketConfig>(out _racketConfig);
             InstallPlayer1();
             InstallPlayer2();
         }
@@ -27,21 +26,18 @@ namespace Gameplay.Player
         {
             IInputSystem inputSystem = new KeyboardInputSystem();
             contextListeners.Add(inputSystem);
-            Locator.TryResolve<IConfigProvider>(out var configProvider);
 
-            _player1.PlayerMoveController.Construct(inputSystem, default);
+            _player1.PlayerMoveController.Construct(inputSystem, _racketConfig);
         }
 
         private void InstallPlayer2()
         {
             Locator.TryResolve<IBallProvider>(out var ballProvider);
-
-            IInputSystem inputSystem = new BotInputSystem(ballProvider,_player2);
+            Locator.TryResolve<BotConfig>(out var botConfig);
+            IInputSystem inputSystem = new BotInputSystem(ballProvider, _player2, botConfig);
             contextListeners.Add(inputSystem);
 
-
-            _player2.PlayerMoveController.Construct(inputSystem, default);
+            _player2.PlayerMoveController.Construct(inputSystem, _racketConfig);
         }
-        
     }
 }

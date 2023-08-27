@@ -33,7 +33,7 @@ namespace Gameplay.Player.MoveController
 
         private void OnMoveHandler(Vector2 direction)
         {
-            _rigidbody2D.MovePosition((Vector2)gameObject.transform.position + direction * 0.05f);
+            _rigidbody2D.MovePosition((Vector2)gameObject.transform.position + direction * _racketConfig.PlayerSpeed);
         }
     }
 }

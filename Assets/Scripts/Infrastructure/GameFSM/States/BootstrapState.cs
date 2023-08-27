@@ -1,3 +1,4 @@
+using UnityEngine.SceneManagement;
 using Utilities.StateMachine;
 
 namespace Infrastructure.GameFSM.States
@@ -11,7 +12,7 @@ namespace Infrastructure.GameFSM.States
         
         public void Exit()
         {
-           
+            
         }
     }
 }

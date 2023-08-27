@@ -212,6 +212,7 @@ GameObject:
   - component: {fileID: 329022170}
   - component: {fileID: 329022172}
   - component: {fileID: 329022171}
+  - component: {fileID: 329022173}
   m_Layer: 0
   m_Name: Player2_DeadZone
   m_TagString: Untagged
@@ -333,6 +334,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &329022173
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 329022168}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06261172aa654a408e27e82a473e0df1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _playerType: 1
 --- !u!1 &429449749
 GameObject:
   m_ObjectHideFlags: 0
@@ -430,8 +444,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _autoRun: 1
   _monoInstallers:
-  - {fileID: 1916727643}
   - {fileID: 1151323566}
+  - {fileID: 1916727643}
 --- !u!4 &482190409
 Transform:
   m_ObjectHideFlags: 0
@@ -812,6 +826,7 @@ GameObject:
   - component: {fileID: 1116991331}
   - component: {fileID: 1116991333}
   - component: {fileID: 1116991332}
+  - component: {fileID: 1116991334}
   m_Layer: 0
   m_Name: Player1_DeadZone
   m_TagString: Untagged
@@ -933,6 +948,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &1116991334
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1116991329}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06261172aa654a408e27e82a473e0df1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _playerType: 0
 --- !u!1 &1151323564
 GameObject:
   m_ObjectHideFlags: 0

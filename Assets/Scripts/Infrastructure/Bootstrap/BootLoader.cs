@@ -1,4 +1,4 @@
-using Infrastructure.ConfigInitializer;
+using Configs;
 using Infrastructure.GameFSM.States;
 using Infrastructure.InfrastructureFSM;
 using Infrastructure.ServiceLocator;
@@ -9,12 +9,14 @@ namespace Infrastructure.Bootstrap
 {
     public sealed class BootLoader : MonoBehaviour
     {
-        [SerializeField] private ConfigProvider _configProvider;
-
+        [SerializeField] private RacketConfig _racketConfig;
+        [SerializeField] private BotConfig _botConfig;
+        [SerializeField] private BallConfig _ballConfig;
+        
         private void Start()
         {
+            ConfigRegister();
             InitGameStateMachine();
-            InitConfigProvider();
             SceneManager.LoadScene("Scenes/Game");
         }
 
@@ -26,9 +28,12 @@ namespace Infrastructure.Bootstrap
             Locator.Register(typeof(IGameStateMachine), gameStateMachine);
         }
 
-        private void InitConfigProvider()
+        private void ConfigRegister()
         {
-            Locator.Register(typeof(IConfigProvider), _configProvider);
+            Locator.Register(_racketConfig);
+            Locator.Register(_botConfig);
+            Locator.Register(_ballConfig);
         }
+        
     }
 }

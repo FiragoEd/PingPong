@@ -167,7 +167,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fad7c09387724055aea6f3ea3e9874da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _configProvider: {fileID: 1750535841}
+  _racketConfig: {fileID: 11400000, guid: 253d074fe84436f46a317c1a9a7a11b7, type: 2}
+  _botConfig: {fileID: 11400000, guid: b3a5025ebe0f0f2468ac35b510c8d9b4, type: 2}
+  _ballConfig: {fileID: 11400000, guid: fdc147dbecb0c3742a38a04567256c96, type: 2}
 --- !u!1 &1684633016
 GameObject:
   m_ObjectHideFlags: 0

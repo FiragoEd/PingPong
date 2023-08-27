@@ -1,4 +1,3 @@
-using System.Reflection.Emit;
 using Gameplay.Input;
 using Gameplay.Player.MoveController;
 using UnityEngine;
@@ -10,7 +9,7 @@ namespace Gameplay.Player
         [SerializeField] private PlayerType _playerType;
         [SerializeField] private PlayerMoveController _playerMoveController;
 
-
+        public PlayerType PlayerType => _playerType;
         public PlayerMoveController PlayerMoveController => _playerMoveController;
         
         public void Construct(IInputSystem inputSystem)

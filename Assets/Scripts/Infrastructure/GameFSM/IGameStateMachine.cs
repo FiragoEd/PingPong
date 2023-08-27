@@ -1,7 +1,6 @@
 namespace Infrastructure.GameFSM
 {
-    public interface IGameStateMachine 
+    public interface IGameStateMachine
     {
-        
     }
 }

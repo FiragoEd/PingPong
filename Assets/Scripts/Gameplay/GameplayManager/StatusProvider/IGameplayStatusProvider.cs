@@ -6,6 +6,5 @@ namespace Gameplay.GameplayManager
         public void FinishGame();
         public void RestartRound();
         public void FinishRound();
-
     }
 }

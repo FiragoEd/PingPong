@@ -1,5 +1,5 @@
 using Gameplay.GameplayManager.Intrefaces;
-using Infrastructure.Installer;
+using Infrastructure.Installers;
 using Infrastructure.ServiceLocator;
 
 namespace Gameplay.GameplayManager.StatusProvider
@@ -11,10 +11,9 @@ namespace Gameplay.GameplayManager.StatusProvider
             var statusProvider = new GameplayStatusProvider();
             IGameplayStatusProvider gameplayStatusProvider = statusProvider;
             IGameplayListener gameplayListener = statusProvider;
-            
+
             Locator.Register(gameplayListener);
             Locator.Register(gameplayStatusProvider);
         }
-        
     }
 }

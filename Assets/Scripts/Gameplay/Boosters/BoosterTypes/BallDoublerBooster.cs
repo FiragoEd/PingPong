@@ -2,7 +2,7 @@ using Gameplay.Ball.BallAccumulator;
 
 namespace Gameplay.Boosters.BoosterTypes
 {
-    public class BallDoublerBooster: BoosterBase
+    public class BallDoublerBooster : BoosterBase
     {
         private IBallsCreator _ballCreator;
 
@@ -10,6 +10,7 @@ namespace Gameplay.Boosters.BoosterTypes
         {
             _ballCreator = ballsCreator;
         }
+
         public override void GetBooster(Player.Player player)
         {
             _ballCreator.CloneBall(_activatedBall);

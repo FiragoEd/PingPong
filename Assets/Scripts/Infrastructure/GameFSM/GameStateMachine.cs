@@ -1,9 +1,8 @@
 using Utilities.StateMachine;
 
-namespace Infrastructure.InfrastructureFSM
+namespace Infrastructure.GameFSM
 {
     public sealed class GameStateMachine : StateMachine
     {
-       
     }
 }

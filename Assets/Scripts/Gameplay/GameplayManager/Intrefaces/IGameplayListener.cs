@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-
 namespace Gameplay.GameplayManager.Intrefaces
 {
     public interface IGameplayListener

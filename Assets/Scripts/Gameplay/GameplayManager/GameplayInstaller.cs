@@ -1,7 +1,7 @@
 using Configs;
 using Gameplay.CollideHandler;
 using Gameplay.ScoreManager;
-using Infrastructure.Installer;
+using Infrastructure.Installers;
 using Infrastructure.ServiceLocator;
 using UI;
 using UnityEngine;

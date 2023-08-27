@@ -1,6 +1,5 @@
-using System;
 using System.Collections.Generic;
-using Infrastructure.Installer;
+using Infrastructure.Installers;
 using UnityEngine;
 
 namespace Infrastructure.Context
@@ -69,14 +68,17 @@ namespace Infrastructure.Context
             {
                 this._initializeListeners.Add(initializeListener);
             }
+
             if (listener is IUpdateGameListener updateListener)
             {
                 this._updateListeners.Add(updateListener);
             }
+
             if (listener is IDisposeListener disposeListener)
             {
                 this._disposeListeners.Add(disposeListener);
             }
+
             if (listener is ILateUpdateGameListener lateUpdateGameListener)
             {
                 this._lateUpdateListeners.Add(lateUpdateGameListener);

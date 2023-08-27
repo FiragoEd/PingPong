@@ -5,11 +5,11 @@ using UnityEngine;
 
 namespace Gameplay.Player.MoveController
 {
-    [RequireComponent(typeof(Rigidbody2D),typeof(Renderer))]
+    [RequireComponent(typeof(Rigidbody2D), typeof(Renderer))]
     public class PlayerMoveController : MonoBehaviour
     {
         private const float MaxYPos = 4.65f;
-        
+
         private IInputSystem _inputSystem;
         private RacketConfig _racketConfig;
         private Rigidbody2D _rigidbody2D;
@@ -25,7 +25,7 @@ namespace Gameplay.Player.MoveController
             _inputSystem = inputSystem;
             _racketConfig = racketConfig;
         }
-        
+
         public void ReversControl()
         {
             _isReverse = !_isReverse;
@@ -35,7 +35,7 @@ namespace Gameplay.Player.MoveController
         {
             _isReverse = false;
         }
-        
+
         private void Start()
         {
             _inputSystem.OnMove += OnMoveHandler;
@@ -47,7 +47,7 @@ namespace Gameplay.Player.MoveController
         {
             _inputSystem.OnMove -= OnMoveHandler;
         }
-        
+
         private void OnMoveHandler(Vector2 direction)
         {
             if (_isReverse)
@@ -60,7 +60,7 @@ namespace Gameplay.Player.MoveController
 
         private float GetClampMinValue()
         {
-           return -MaxYPos + _renderer.bounds.extents.y;
+            return -MaxYPos + _renderer.bounds.extents.y;
         }
 
         private float GetClampMaxValue()

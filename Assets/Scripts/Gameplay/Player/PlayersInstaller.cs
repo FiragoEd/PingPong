@@ -1,10 +1,9 @@
-using System.Collections.Generic;
 using Configs;
-using Gameplay.Ball.BallAccumulator;
+using Gameplay.Ball.Creator;
 using Gameplay.GameplayManager.Intrefaces;
 using Gameplay.Input;
 using Gameplay.Input.Systems;
-using Infrastructure.Installer;
+using Infrastructure.Installers;
 using Infrastructure.ServiceLocator;
 using UnityEngine;
 
@@ -39,7 +38,7 @@ namespace Gameplay.Player
 
             _player1.PlayerMoveController.Construct(inputSystem, _racketConfig);
             _player1.Construct(_gameplayListener, _racketConfig);
-            
+
             contextListeners.Add(inputSystem);
         }
 

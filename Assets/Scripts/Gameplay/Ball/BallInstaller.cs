@@ -3,7 +3,7 @@ using Gameplay.Ball.BallAccumulator;
 using Gameplay.Ball.Creator;
 using Gameplay.Ball.Factory;
 using Gameplay.GameplayManager.Intrefaces;
-using Infrastructure.Installer;
+using Infrastructure.Installers;
 using Infrastructure.ServiceLocator;
 using UnityEngine;
 
@@ -28,7 +28,7 @@ namespace Gameplay.Ball
             var creator = new BallsCreator(gameplayListener, _ballFactory);
             IBallsCreator ballsCreator = creator;
             IBallProvider ballProvider = creator;
-            
+
             Locator.Register(ballProvider);
             Locator.Register(ballsCreator);
 

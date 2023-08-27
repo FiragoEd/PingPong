@@ -7,12 +7,10 @@ namespace Infrastructure.GameFSM.States
     {
         public void Enter()
         {
-            
         }
-        
+
         public void Exit()
         {
-            
         }
     }
 }

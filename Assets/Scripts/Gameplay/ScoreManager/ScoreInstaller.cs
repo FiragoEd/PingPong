@@ -1,5 +1,5 @@
 using Configs;
-using Infrastructure.Installer;
+using Infrastructure.Installers;
 using Infrastructure.ServiceLocator;
 using TMPro;
 using UnityEngine;

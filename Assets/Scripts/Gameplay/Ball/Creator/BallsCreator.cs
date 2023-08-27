@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Gameplay.Ball.BallAccumulator;
+using Gameplay.Ball.Factory;
 using Gameplay.GameplayManager.Intrefaces;
 using Infrastructure.Context;
 using Object = UnityEngine.Object;
@@ -86,6 +87,7 @@ namespace Gameplay.Ball.Creator
                 OnBallRemoved?.Invoke(ball);
                 Object.Destroy(ball.gameObject);
             }
+
             _balls.Clear();
         }
     }

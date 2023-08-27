@@ -1,13 +1,10 @@
-using System;
 using Configs;
 using Gameplay.Ball.CollideProvider;
-using Gameplay.Player;
 using UnityEngine;
-using Random = UnityEngine.Random;
 
 namespace Gameplay.Ball.MoveController
 {
-    [RequireComponent(typeof(Rigidbody2D),typeof(BallCollideProvider))]
+    [RequireComponent(typeof(Rigidbody2D), typeof(BallCollideProvider))]
     public sealed class BallMoveController : MonoBehaviour
     {
         private Rigidbody2D _rigidbody2D;
@@ -49,12 +46,11 @@ namespace Gameplay.Ball.MoveController
         {
             _rigidbody2D.AddForce(-velocity, ForceMode2D.Force);
         }
-        
+
         private void OnPlayerCollideHandler(Player.Player player)
         {
             var ballVelocity = _rigidbody2D.velocity + _rigidbody2D.velocity.normalized * _ballConfig.DeltaSpeed;
             _rigidbody2D.velocity = ballVelocity;
         }
-        
     }
 }

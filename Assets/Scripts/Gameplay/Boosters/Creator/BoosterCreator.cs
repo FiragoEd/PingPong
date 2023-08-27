@@ -10,14 +10,14 @@ using Object = UnityEngine.Object;
 
 namespace Gameplay.Boosters.Creator
 {
-    public class BoosterCreator : 
-        IBoosterCreator, 
-        IStartHandler, 
-        IFinishHandler, 
-        IRestartRoundHandler, 
-        IFinishRoundHandler ,
-        IInitializeListener, 
-        IDisposeListener    
+    public class BoosterCreator :
+        IBoosterCreator,
+        IStartHandler,
+        IFinishHandler,
+        IRestartRoundHandler,
+        IFinishRoundHandler,
+        IInitializeListener,
+        IDisposeListener
     {
         private const int MilliSecondMultiplier = 1000;
 
@@ -52,14 +52,14 @@ namespace Gameplay.Boosters.Creator
 
         public void StartGame()
         {
-            _isSpawning = true;  
+            _isSpawning = true;
             StartSpawningBoosters();
         }
 
         public void FinishRound()
         {
             _isSpawning = false;
-            _cancellationToken?.Cancel();      
+            _cancellationToken?.Cancel();
             DestroyAllBoosters();
         }
 
@@ -73,7 +73,7 @@ namespace Gameplay.Boosters.Creator
         {
             _isSpawning = false;
             _cancellationToken?.Cancel();
-            DestroyAllBoosters();       
+            DestroyAllBoosters();
         }
 
         public void InstantiateBooster()
@@ -85,7 +85,7 @@ namespace Gameplay.Boosters.Creator
         public void RemoveBooster(BoosterBase booster)
         {
             _boosters.Remove(booster);
-            Object.Destroy(booster.gameObject); 
+            Object.Destroy(booster.gameObject);
         }
 
         private void DestroyAllBoosters()
@@ -94,6 +94,7 @@ namespace Gameplay.Boosters.Creator
             {
                 Object.Destroy(booster.gameObject);
             }
+
             _boosters.Clear();
         }
 
@@ -112,7 +113,6 @@ namespace Gameplay.Boosters.Creator
                 {
                     // ignored
                 }
-                
             } while (_isSpawning);
         }
     }

@@ -1,4 +1,4 @@
-namespace Gameplay.Ball
+namespace Gameplay.Ball.Factory
 {
     public interface IBallFactory
     {

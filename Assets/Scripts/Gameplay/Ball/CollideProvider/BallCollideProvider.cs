@@ -15,7 +15,7 @@ namespace Gameplay.Ball.CollideProvider
 
         public event Action<PlayerType> OnDeadZoneCollide;
         public event Action<Player.Player> OnPlayerCollide;
-        public event Action<BoosterBase,Player.Player> OnBoosterCollide;
+        public event Action<BoosterBase, Player.Player> OnBoosterCollide;
 
         //Так себе решение, расплывется в огромный класс
         private void OnCollisionEnter2D(Collision2D col)

@@ -1,6 +1,6 @@
 using System;
 using Configs;
-using Gameplay.Ball.BallAccumulator;
+using Gameplay.Ball.Creator;
 using Gameplay.GameplayManager.Intrefaces;
 using Infrastructure.Context;
 using UnityEngine;
@@ -44,7 +44,7 @@ namespace Gameplay.Input.Systems
         {
             _gameplayListener.AddListener(this);
         }
-        
+
         public void Dispose()
         {
             _gameplayListener.RemoveListener(this);
@@ -74,7 +74,7 @@ namespace Gameplay.Input.Systems
         {
             _isHandle = true;
         }
-        
+
         public void FinishGame()
         {
             _isHandle = false;
@@ -104,7 +104,5 @@ namespace Gameplay.Input.Systems
                 }
             }
         }
-
-        
     }
 }

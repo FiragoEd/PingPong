@@ -1,10 +1,9 @@
 using System;
-using Gameplay.Ball.BallAccumulator;
+using Gameplay.Ball.Creator;
 using Gameplay.Boosters;
 using Gameplay.Boosters.Creator;
 using Gameplay.Player;
 using Infrastructure.Context;
-using Object = UnityEngine.Object;
 
 namespace Gameplay.CollideHandler
 {
@@ -14,7 +13,7 @@ namespace Gameplay.CollideHandler
         private readonly IBoosterCreator _boosterCreator;
 
         public event Action<PlayerType> OnDeadZoneCollide;
-        
+
         public CollideHandler(
             IBoosterCreator boosterCreator,
             IBallProvider ballProvider)
@@ -28,13 +27,13 @@ namespace Gameplay.CollideHandler
             _ballProvider.OnBallCreated += OnBallCreatedHandler;
             _ballProvider.OnBallRemoved += OnBallRemoteHandler;
         }
-        
+
         public void Dispose()
         {
             _ballProvider.OnBallCreated -= OnBallCreatedHandler;
             _ballProvider.OnBallRemoved -= OnBallRemoteHandler;
         }
-        
+
         private void OnBallCreatedHandler(Ball.Ball ball)
         {
             ball.BallCollideProvider.OnBoosterCollide += OnBoosterColliderHandler;
@@ -46,13 +45,13 @@ namespace Gameplay.CollideHandler
             ball.BallCollideProvider.OnBoosterCollide -= OnBoosterColliderHandler;
             ball.BallCollideProvider.OnDeadZoneCollide -= OnDeadZoneCollideHandler;
         }
-        
+
         private void OnBoosterColliderHandler(BoosterBase booster, Player.Player player)
         {
             booster.GetBooster(player);
             _boosterCreator.RemoveBooster(booster);
         }
-        
+
         private void OnDeadZoneCollideHandler(PlayerType playerZone)
         {
             OnDeadZoneCollide?.Invoke(playerZone);

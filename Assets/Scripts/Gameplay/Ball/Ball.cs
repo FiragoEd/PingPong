@@ -8,7 +8,7 @@ namespace Gameplay.Ball
     {
         [SerializeField] private BallMoveController _ballMoveController;
         [SerializeField] private BallCollideProvider _ballCollideProvider;
-        
+
         public BallMoveController BallMoveController => _ballMoveController;
         public BallCollideProvider BallCollideProvider => _ballCollideProvider;
     }

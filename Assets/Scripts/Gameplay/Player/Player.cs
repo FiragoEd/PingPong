@@ -40,7 +40,7 @@ namespace Gameplay.Player
             transform.localScale = _startScale;
             _playerMoveController.SetDefaultControl();
         }
-        
+
         public void FinishGame()
         {
             transform.position = _startPos;
@@ -57,7 +57,5 @@ namespace Gameplay.Player
         {
             transform.localScale *= _racketConfig.SizeCoef;
         }
-
-        
     }
 }

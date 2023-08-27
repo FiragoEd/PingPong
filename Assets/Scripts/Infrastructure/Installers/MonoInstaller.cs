@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using Infrastructure.Context;
 using UnityEngine;
 
-namespace Infrastructure.Installer
+namespace Infrastructure.Installers
 {
     public abstract class MonoInstaller : MonoBehaviour, IGameListenerProvider
     {

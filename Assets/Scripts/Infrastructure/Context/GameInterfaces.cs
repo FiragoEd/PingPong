@@ -6,17 +6,17 @@ namespace Infrastructure.Context
     {
         void Initialize();
     }
-    
+
     public interface IDisposeListener
     {
         void Dispose();
     }
-    
+
     public interface IUpdateGameListener
     {
         void OnUpdate();
     }
-    
+
     public interface ILateUpdateGameListener
     {
         void OnLateUpdate();

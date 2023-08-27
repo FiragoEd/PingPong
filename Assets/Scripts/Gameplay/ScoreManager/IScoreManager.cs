@@ -1,4 +1,3 @@
-using System;
 using Gameplay.Player;
 
 namespace Gameplay.ScoreManager

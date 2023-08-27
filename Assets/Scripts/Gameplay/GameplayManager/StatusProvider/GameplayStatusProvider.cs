@@ -1,6 +1,6 @@
 namespace Gameplay.GameplayManager
 {
-    public sealed partial class GameplayStatusProvider : IGameplayStatusProvider 
+    public sealed partial class GameplayStatusProvider : IGameplayStatusProvider
     {
         public void StartGame()
         {
@@ -9,7 +9,7 @@ namespace Gameplay.GameplayManager
                 startHandler.StartGame();
             }
         }
-        
+
         public void FinishGame()
         {
             foreach (var finishHandler in _finishHandlers)

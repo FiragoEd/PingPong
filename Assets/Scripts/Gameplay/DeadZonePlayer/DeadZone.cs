@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Gameplay.DeadZonePlayer
 {
-    public class DeadZone: MonoBehaviour
+    public class DeadZone : MonoBehaviour
     {
         [SerializeField] private PlayerType _playerType;
 

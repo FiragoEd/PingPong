@@ -5,7 +5,7 @@ using Gameplay.Ball.BallAccumulator;
 using Gameplay.Boosters.Creator;
 using Gameplay.Boosters.Factory;
 using Gameplay.GameplayManager.Intrefaces;
-using Infrastructure.Installer;
+using Infrastructure.Installers;
 using Infrastructure.ServiceLocator;
 using UnityEngine;
 

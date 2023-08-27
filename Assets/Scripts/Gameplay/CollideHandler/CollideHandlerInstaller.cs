@@ -1,6 +1,6 @@
-using Gameplay.Ball.BallAccumulator;
+using Gameplay.Ball.Creator;
 using Gameplay.Boosters.Creator;
-using Infrastructure.Installer;
+using Infrastructure.Installers;
 using Infrastructure.ServiceLocator;
 
 namespace Gameplay.CollideHandler

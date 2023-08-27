@@ -123,6 +123,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _ballMoveController: {fileID: 9127018421776451354}
+  _ballCollideProvider: {fileID: 2295566649106316258}
 --- !u!114 &9127018421776451354
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -1,4 +1,5 @@
 using Configs;
+using Infrastructure.GameFSM;
 using Infrastructure.GameFSM.States;
 using Infrastructure.InfrastructureFSM;
 using Infrastructure.ServiceLocator;
@@ -12,6 +13,7 @@ namespace Infrastructure.Bootstrap
         [SerializeField] private RacketConfig _racketConfig;
         [SerializeField] private BotConfig _botConfig;
         [SerializeField] private BallConfig _ballConfig;
+        [SerializeField] private GameSettingConfig _gameSettingConfig;
         
         private void Start()
         {
@@ -33,6 +35,7 @@ namespace Infrastructure.Bootstrap
             Locator.Register(_racketConfig);
             Locator.Register(_botConfig);
             Locator.Register(_ballConfig);
+            Locator.Register(_gameSettingConfig);
         }
         
     }

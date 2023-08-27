@@ -1,8 +1,10 @@
 using System.Collections.Generic;
+using Configs;
 using Cysharp.Threading.Tasks;
 using Gameplay.Ball.BallAccumulator;
 using Gameplay.Boosters.Creator;
 using Gameplay.Boosters.Factory;
+using Gameplay.GameplayManager.Intrefaces;
 using Infrastructure.Installer;
 using Infrastructure.ServiceLocator;
 using UnityEngine;
@@ -14,11 +16,11 @@ namespace Gameplay.Boosters
         [SerializeField] private List<BoosterData> _boosterPrefabs = new List<BoosterData>();
 
         private IBoosterFactory _boosterFactory;
+
         public override void Install()
         {
             BindFactory();
             BindBoosterCreator();
-            
         }
 
         private void BindFactory()
@@ -27,12 +29,14 @@ namespace Gameplay.Boosters
             _boosterFactory = new BoosterFactory(_boosterPrefabs, ballsCreator);
         }
 
-        private async void BindBoosterCreator()
+        private void BindBoosterCreator()
         {
-            IBoosterCreator boosterCreator = new BoosterCreator(_boosterFactory);
+            Locator.TryResolve<GameSettingConfig>(out var gameSettingConfig);
+            Locator.TryResolve<IGameplayListener>(out var gameplayListener);
+            IBoosterCreator boosterCreator = new BoosterCreator(gameSettingConfig, gameplayListener, _boosterFactory);
             Locator.Register(boosterCreator);
-            await UniTask.Delay(5000);
-            boosterCreator.InstantiateBooster();
+
+            contextListeners.Add(boosterCreator);
         }
     }
 }

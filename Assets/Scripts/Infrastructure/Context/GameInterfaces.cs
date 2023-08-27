@@ -1,7 +1,6 @@
 using System.Collections.Generic;
-using UnityEngine;
 
-namespace GameSystem
+namespace Infrastructure.Context
 {
     public interface IInitializeListener
     {
@@ -12,6 +11,7 @@ namespace GameSystem
     {
         void Dispose();
     }
+    
     public interface IUpdateGameListener
     {
         void OnUpdate();

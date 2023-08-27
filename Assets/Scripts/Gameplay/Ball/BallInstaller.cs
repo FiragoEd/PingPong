@@ -2,6 +2,7 @@ using Configs;
 using Gameplay.Ball.BallAccumulator;
 using Gameplay.Ball.Creator;
 using Gameplay.Ball.Factory;
+using Gameplay.GameplayManager.Intrefaces;
 using Infrastructure.Installer;
 using Infrastructure.ServiceLocator;
 using UnityEngine;
@@ -23,7 +24,8 @@ namespace Gameplay.Ball
 
         private void BindBallCreator()
         {
-            var creator = new BallsCreator(_ballFactory);
+            Locator.TryResolve<IGameplayListener>(out var gameplayListener);
+            var creator = new BallsCreator(gameplayListener, _ballFactory);
             IBallsCreator ballsCreator = creator;
             IBallProvider ballProvider = creator;
             

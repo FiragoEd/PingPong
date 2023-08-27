@@ -15,7 +15,7 @@ namespace Gameplay.Ball.CollideProvider
 
         public event Action<PlayerType> OnDeadZoneCollide;
         public event Action<Player.Player> OnPlayerCollide;
-        public event Action<BoosterBase> OnBoosterCollide;
+        public event Action<BoosterBase,Player.Player> OnBoosterCollide;
 
         //Так себе решение, расплывется в огромный класс
         private void OnCollisionEnter2D(Collision2D col)
@@ -33,9 +33,9 @@ namespace Gameplay.Ball.CollideProvider
 
             if (col.gameObject.TryGetComponent<BoosterBase>(out var booster))
             {
-                booster.GetBooster(_lastPlayerCollide);
-                OnBoosterCollide?.Invoke(booster);
-                Destroy(booster.gameObject);
+                //booster.GetBooster(_lastPlayerCollide);
+                OnBoosterCollide?.Invoke(booster, _lastPlayerCollide);
+                //Destroy(booster.gameObject);
             }
         }
     }

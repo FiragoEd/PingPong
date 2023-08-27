@@ -1,6 +1,4 @@
-using Utilities.StateMachine;
-
-namespace Infrastructure.InfrastructureFSM
+namespace Infrastructure.GameFSM
 {
     public interface IGameStateMachine 
     {

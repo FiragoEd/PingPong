@@ -7,6 +7,8 @@ namespace Gameplay.Ball.BallAccumulator
     {
         //можно добавить реактивность
         public event Action<Ball> OnBallCreated;
+        public event Action<Ball> OnBallRemoved;
+        
         public List<Ball> Balls { get; }
     }
 }
